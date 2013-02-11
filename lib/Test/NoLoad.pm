@@ -58,7 +58,7 @@ It will be fail, if the module was loaded.
 
 =head1 EXPORTED FUNCTIONS
 
-=head2 check_no_load : check_no_load(@modules)
+=head2 check_no_load(@modules)
 
 
 =head1 REPOSITORY
@@ -70,11 +70,6 @@ Test::NoLoad is hosted on github
 =head1 AUTHOR
 
 Dai Okabayashi E<lt>bayashi@cpan.orgE<gt>
-
-
-=head1 SEE ALSO
-
-L<Other::Module>
 
 
 =head1 LICENSE
