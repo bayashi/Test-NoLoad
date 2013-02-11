@@ -7,12 +7,10 @@ my $builder = Module::Build->new(
     license             => 'perl',
     dist_author         => 'Dai Okabayashi <bayashi@cpan.org>',
     dist_version_from   => 'lib/Test/NoLoad.pm',
-    build_requires      => {
-        'Test::More' => 0.88,
-    },
     requires => {
         'perl' => '5.8.1',
-        'Carp' => 0,
+        'Test::More' => 0,
+        'Exporter' => 0,
     },
     add_to_cleanup      => [ 'Test-NoLoad-*' ],
     meta_merge     => {

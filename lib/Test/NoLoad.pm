@@ -1,17 +1,29 @@
 package Test::NoLoad;
 use strict;
 use warnings;
-use Carp qw/croak/;
+use Test::More qw//;
 
 our $VERSION = '0.01';
 
-sub new {
-    my $class = shift;
-    my $args  = shift || +{};
+use Exporter;
+our @ISA    = qw/Exporter/;
+our @EXPORT = qw/check_no_load/;
 
-    bless $args, $class;
+sub check_no_load {
+    my @modules = @_;
+
+    Test::More::plan('no_plan');
+
+    for my $module (@modules) {
+        Test::More::ok( _check_no_load($module), "no load: $module" );
+    }
 }
 
+sub _check_no_load {
+    my $module = shift;
+    $module =~ s!::!/!g;
+    return !defined( $INC{"$module\.pm"} ) ? 1 : 0;
+}
 
 1;
 
@@ -19,17 +31,36 @@ __END__
 
 =head1 NAME
 
-Test::NoLoad - one line description
+Test::NoLoad - Fail, if the module was loaded
 
 
 =head1 SYNOPSIS
 
+    use Test::AllModules;
     use Test::NoLoad;
+
+    BEGIN {
+        all_ok(
+            search_path => 'MyApp',
+            check => sub {
+                my $class = shift;
+                eval "use $class;1;";
+            },
+        );
+    }
+
+    check_no_load(qw/ Class::ISA Pod::Plainer Switch /);
 
 
 =head1 DESCRIPTION
 
-Test::NoLoad is
+Test::NoLoad export the function `check_no_load`.
+It will be fail, if the module was loaded.
+
+
+=head1 EXPORTED FUNCTIONS
+
+=head2 check_no_load : check_no_load(@modules)
 
 
 =head1 REPOSITORY
