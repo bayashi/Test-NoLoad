@@ -9,7 +9,7 @@ my $builder = Module::Build->new(
     dist_version_from   => 'lib/Test/NoLoad.pm',
     requires => {
         'perl' => '5.8.1',
-        'Test::More' => 0,
+        'Test::More' => 0.88,
         'Exporter' => 0,
     },
     add_to_cleanup      => [ 'Test-NoLoad-*' ],
