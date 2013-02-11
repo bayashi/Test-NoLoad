@@ -20,7 +20,7 @@ sub check_no_load {
 sub _check_no_load {
     my $module = shift;
     $module =~ s!::!/!g;
-    return !defined( $INC{"$module\.pm"} ) ? 1 : 0;
+    return !defined( $INC{"$module\.pm"} );
 }
 
 1;
