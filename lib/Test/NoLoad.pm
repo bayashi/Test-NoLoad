@@ -12,8 +12,6 @@ our @EXPORT = qw/check_no_load/;
 sub check_no_load {
     my @modules = @_;
 
-    Test::More::plan('no_plan');
-
     for my $module (@modules) {
         Test::More::ok( _check_no_load($module), "no load: $module" );
     }
