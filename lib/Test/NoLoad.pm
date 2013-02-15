@@ -13,21 +13,21 @@ sub check_no_load {
     my @modules = @_;
 
     for my $module (@modules) {
-        Test::More::ok( _check_no_load($module), "no load: $module" );
+        Test::More::ok( !_loaded($module), "no load: $module" );
     }
 }
 
-sub _check_no_load {
+sub _loaded {
     my $module = shift;
     $module =~ s!::!/!g;
-    return !defined( $INC{"$module\.pm"} );
+    return defined( $INC{"$module\.pm"} );
 }
 
 sub load_ok {
     my @modules = @_;
 
     for my $module (@modules) {
-        Test::More::ok( !_check_no_load($module), "loaded: $module" );
+        Test::More::ok( _loaded($module), "loaded: $module" );
     }
 }
 
