@@ -1,4 +1,10 @@
 Revision history for Perl extension Test::NoLoad
 
+0.02    Fri Feb 15 11:26:30 JST 2013
+    [NEW FEATURE]
+        - added new method: load_ok($module)
+    [IMPROVEMENT]
+        - tiny refactoring
+
 0.01    Mon Feb 11 12:41:03 JST 2013
         - original version
