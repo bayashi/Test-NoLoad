@@ -68,6 +68,8 @@ It will be fail, if the module was loaded.
 
 =head2 check_no_load(@modules)
 
+=head2 load_ok(@modules)
+
 
 =head1 REPOSITORY
 
