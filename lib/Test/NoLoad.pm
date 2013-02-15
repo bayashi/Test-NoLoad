@@ -7,7 +7,7 @@ our $VERSION = '0.01';
 
 use Exporter;
 our @ISA    = qw/Exporter/;
-our @EXPORT = qw/check_no_load/;
+our @EXPORT = qw/check_no_load load_ok/;
 
 sub check_no_load {
     my @modules = @_;
@@ -21,6 +21,14 @@ sub _check_no_load {
     my $module = shift;
     $module =~ s!::!/!g;
     return !defined( $INC{"$module\.pm"} );
+}
+
+sub load_ok {
+    my @modules = @_;
+
+    for my $module (@modules) {
+        Test::More::ok( !_check_no_load($module), "loaded: $module" );
+    }
 }
 
 1;
