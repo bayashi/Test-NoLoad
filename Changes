@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::NoLoad
 
+0.022   Sun Mar  3 01:07:26 JST 2013
+    [NO CODE CHANGES]
+        - fixed for distribution
+
 0.021   Fri Feb 15 12:02:19 JST 2013
         - fixed POD: added `load_ok` method
 
