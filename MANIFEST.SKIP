@@ -24,5 +24,4 @@
 ^\.travis.yml$
 ^\.git/
 \.sw[po]$
-^MYMETA.yml$
-^README\.pod$
+^MYMETA\.*$
