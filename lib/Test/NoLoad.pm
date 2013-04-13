@@ -10,11 +10,31 @@ our @ISA    = qw/Exporter/;
 our @EXPORT = qw/check_no_load load_ok/;
 
 sub check_no_load {
-    my @modules = @_;
+    my @list = @_;
 
-    for my $module (@modules) {
-        Test::More::ok( !_loaded($module), "no load: $module" );
+    for my $element (@list) {
+        if ( ref $element eq 'Regexp') {
+            Test::More::ok( !_match($element), "no load: $element" );
+        }
+        else {
+            Test::More::ok( !_loaded($element), "no load: $element" );
+        }
     }
+}
+
+sub _match {
+    my $regexp = shift;
+
+    my $match;
+    for my $module (keys %INC) {
+        $module =~ s!/!::!g;
+        $module =~ s!\.pm$!!;
+        if ($module =~ m!$regexp!) {
+            Test::More::note("$module was loaded");
+            $match = 1;
+        }
+    }
+    return $match;
 }
 
 sub _loaded {
@@ -55,7 +75,10 @@ Test::NoLoad - Fail, if the module was loaded
         );
     }
 
-    check_no_load(qw/ Class::ISA Pod::Plainer Switch /);
+    check_no_load(
+        qw/ Class::ISA Pod::Plainer Switch /,
+        qr/Acme::.+/,
+    );
 
 
 =head1 DESCRIPTION

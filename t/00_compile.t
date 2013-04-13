@@ -9,6 +9,6 @@ load_ok('Test::NoLoad');
 
 check_no_load(qw/
     Moose
-/);
+/, qr/Acme::.+/);
 
 done_testing;
