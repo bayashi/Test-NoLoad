@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Test::More qw//;
 
-our $VERSION = '0.022';
+our $VERSION = '0.03';
 
 use Exporter;
 our @ISA    = qw/Exporter/;
