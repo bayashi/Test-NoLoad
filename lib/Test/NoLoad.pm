@@ -15,7 +15,7 @@ sub check_no_load {
     for my $element (@list) {
         Test::More::ok(
             ref($element) eq 'Regexp' ? !_match($element) : !_loaded($element),
-            $element,
+            "no_load: $element",
         );
     }
 }
@@ -47,7 +47,7 @@ sub load_ok {
     my @modules = @_;
 
     for my $module (@modules) {
-        Test::More::ok( _loaded($module), "loaded: $module" );
+        Test::More::ok( _loaded($module), "load ok: $module" );
     }
 }
 
