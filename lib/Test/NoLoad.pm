@@ -13,12 +13,10 @@ sub check_no_load {
     my @list = @_;
 
     for my $element (@list) {
-        if ( ref $element eq 'Regexp') {
-            Test::More::ok( !_match($element), "no load: $element" );
-        }
-        else {
-            Test::More::ok( !_loaded($element), "no load: $element" );
-        }
+        Test::More::ok(
+            ref($element) eq 'Regexp' ? !_match($element) : !_loaded($element),
+            $element,
+        );
     }
 }
 
@@ -40,7 +38,10 @@ sub _match {
 sub _loaded {
     my $module = shift;
     $module =~ s!::!/!g;
-    return defined( $INC{"$module\.pm"} );
+    if ( defined( $INC{"$module\.pm"} ) ) {
+        Test::More::note("$module was loaded");
+        return 1;
+    }
 }
 
 sub load_ok {
