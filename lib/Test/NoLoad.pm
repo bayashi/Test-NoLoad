@@ -25,8 +25,7 @@ sub _match {
 
     my $match;
     for my $module (keys %INC) {
-        $module =~ s!/!::!g;
-        $module =~ s!\.pm$!!;
+        $module = _path2class($module);
         if ($module =~ m!$regexp!) {
             Test::More::note("$module was loaded");
             $match = 1;
@@ -50,6 +49,23 @@ sub load_ok {
     for my $module (@modules) {
         Test::More::ok( _loaded($module), "loaded: $module" );
     }
+}
+
+
+sub dump_modules {
+    my $msg = '---[loaded modules]-----';
+    Test::More::note($msg);
+    for my $module (sort keys %INC) {
+        Test::More::note( _path2class($module) );
+    }
+    Test::More::note( '-' x length($msg) );
+}
+
+sub _path2class {
+    my $module = shift;
+    $module =~ s!/!::!g;
+    $module =~ s!\.pm$!!;
+    return $module;
 }
 
 1;
@@ -93,6 +109,13 @@ It will be fail, if the module was loaded.
 =head2 check_no_load(@modules)
 
 =head2 load_ok(@modules)
+
+
+=head1 OTHER FUNCTIONS
+
+=head2 dump_modules
+
+show the list of modules: already loaded them when this function just call.
 
 
 =head1 REPOSITORY

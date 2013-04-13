@@ -3,6 +3,7 @@ use Test::More;
 
 BEGIN {
     use_ok 'Test::NoLoad';
+    Test::NoLoad::dump_modules()
 }
 
 load_ok('Test::NoLoad');
