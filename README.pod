@@ -5,7 +5,7 @@ This is Perl module B<Test::NoLoad>.
 
 =begin html
 
-<a href="http://travis-ci.org/bayashi/Test-NoLoad"><img src="https://secure.travis-ci.org/bayashi/Test-NoLoad.png"/></a>
+<a href="http://travis-ci.org/bayashi/Test-NoLoad"><img src="https://secure.travis-ci.org/bayashi/Test-NoLoad.png"/></a> <a href="https://coveralls.io/r/bayashi/Test-NoLoad"><img src="https://coveralls.io/repos/bayashi/Test-NoLoad/badge.png?branch=master"/></a>
 
 =end html
 
